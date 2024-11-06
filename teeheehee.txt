@@ -1,0 +1,41 @@
+# Enable dnsmasq to listen on localhost (127.0.0.1)
+listen-address=127.0.0.1
+
+# Specify the interface dnsmasq will listen to (loopback interface in WSL)
+interface=lo0
+
+# Set the DNS server to your preferred DNS or leave it as the default
+# For example, Google DNS:
+server=8.8.8.8
+server=8.8.4.4
+
+# Add custom domain mappings
+address=/mydomain.local/192.168.1.100
+address=/anotherdomain.local/192.168.1.101
+
+# Specify the domain name for your local network (optional)
+domain=mydomain.local
+
+# Allow dnsmasq to cache DNS queries to speed up subsequent requests
+cache-size=1000
+
+# Set the DNS query logging level (optional)
+log-queries
+
+# Set the maximum number of simultaneous DNS queries
+# By default, this is set to 150, but you can increase it if needed
+max-cache-ttl=3600
+
+# Specify a custom log file for dnsmasq (optional)
+log-facility=/var/log/dnsmasq.log
+
+# Prevent dnsmasq from being an open resolver for the world
+# (This is good practice for security)
+no-dhcp-interface=
+
+# Optional: Add a specific domain for DHCP leases if using DHCP
+# dhcp-option=option:domain-search,"mydomain.local"
+
+# Use this to specify the default DNS server if no other servers are available
+# For example, to set a local DNS server:
+# address=/local/127.0.0.1
